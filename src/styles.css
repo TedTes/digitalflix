@@ -1,0 +1,17 @@
+:root{
+    box-sizing:border-box;
+}
+*,
+::before,
+::after{
+    box-sizing:inherit;
+}
+.nav{
+color:white;
+}
+.productsView{
+   background-color:blue;
+}
+.card{
+    background-color:blue;
+}

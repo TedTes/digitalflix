@@ -1,0 +1,1 @@
+export const categories=["Accessories","Laptops","TVs","iPhone","Video Games","Gift Ideas"]
