@@ -1,58 +1,71 @@
-import React, { Component } from "react";
+import React, { useState,useEffect } from "react";
 import { ValidationError } from "./ValidationError";
-import { GetMessages } from "./ValidationMessages";
-export class ValidatedForm extends Component {
-constructor(props) {
-super(props);
-this.state = {
-validationErrors: {}
+import { GetMessages,FormElements } from "./ValidationMessages";
+export function ValidatedForm(props){
+
+ const[validationErrors,setState]=useState({ })
+ const[firstLoad,setLoad]=useState(false)
+const formElements = {};
+useEffect(()=> { 
+  
+  if(props.name==="checkout"){
+    if ( Object.keys(validationErrors).length === 0 && firstLoad) {
+      const data = Object.assign(...Object.entries(formElements)
+  .map(e => ({[e[0]]: e[1].value})) )
+     props.submitCallback(data)
+    } }
+else if(firstLoad){
+ props.submitCallback2(formElements,validationErrors);
 }
-this.formElements = {};
+ },[validationErrors,firstLoad])
+const handleSubmit = (e) => {
+   e.preventDefault();
+    setLoad(true)
+    setState((prevState)=>{
+   const newState = { ...validationErrors}
+   
+    Object.values(formElements).forEach(elem => {
+    if (!elem.checkValidity()) {
+    newState[elem.name] = GetMessages(elem);
+   }else{
+     delete newState[elem.name]
+ } })
+ console.log("from vali form ")
+   FormElements(newState["password"])
+ if(formElements.password!==undefined && formElements.password.value!==formElements.password2.value){
+   newState["password2"]=GetMessages(formElements.password2);
 }
-handleSubmit = () => {
-this.setState(state => {
-const newState = { ...state, validationErrors: {} }
-Object.values(this.formElements).forEach(elem => {
-if (!elem.checkValidity()) {
-newState.validationErrors[elem.name] = GetMessages(elem);
+  
+
+
+    return newState
+  })
 }
-})
-return newState;
-}, () => {
-if (Object.keys(this.state.validationErrors).length === 0) {
-const data = Object.assign(...Object.entries(this.formElements)
-.map(e => ({[e[0]]: e[1].value})) )
-this.props.submitCallback(data);
-}
-});
-}
-registerRef = (element) => {
+ const registerRef = (element) => {
     if (element !== null) {
-    this.formElements[element.name] = element;
+    formElements[element.name] = element;
+     }
     }
-    }
-    renderElement = (modelItem) => {
-    const name = modelItem.name || modelItem.label.toLowerCase();
-    return <div className="form-group" key={ modelItem.label }>
+    const renderElement = (modelItem) => {
+     const name = modelItem.name || modelItem.label.toLowerCase();
+       return <div className="form-group" key={ modelItem.label }>
     <label>{ modelItem.label }</label>
-    <ValidationError errors={ this.state.validationErrors[name] } />
-    <input className="form-control" name={ name } ref={ this.registerRef }
-    { ...this.props.defaultAttrs } { ...modelItem.attrs } />
+    <input className="form-control" style={{width:"330px"}} name={ name } ref={registerRef }
+    { ...props.defaultAttrs } { ...modelItem.attrs } />
+     <ValidationError errors={validationErrors[name]}/>
     </div>
     }
-    render() {
+ 
     return <React.Fragment>
-    { this.props.formModel.map(m => this.renderElement(m))}
-    <div className="text-center">
+    { props.formModel.map(m => renderElement(m))}
+    <div className="text-center" style={{marginTop:"1.4em"}}>
     <button className="btn btn-secondary m-1"
-    onClick={ this.props.cancelCallback }>
-    { this.props.cancelText || "Cancel" }
+    onClick={ props.cancelCallback }>
+    { props.cancelText || "Cancel" }
     </button>
-    <button className="btn btn-primary m-1"
-    onClick={ this.handleSubmit }>
-    { this.props.submitText || "Submit"}
+    <button className="btn btn-primary m-1" onClick={ handleSubmit}>
+    { props.submitText || "Submit"}
     </button>
     </div>
     </React.Fragment>
-    }
-    }
+ }

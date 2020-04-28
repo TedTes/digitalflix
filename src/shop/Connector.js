@@ -1,10 +1,8 @@
-import React, { Component } from "react";
+import React, { useState,useEffect } from "react";
 import { Switch, Route, Redirect }
 from "react-router-dom"
-import { connect } from "react-redux";
-import { loadData,placeOrder } from "../data/ActionCreators";
-import { addToCart, updateCartQuantity, removeFromCart, clearCart }
-from "../data/CartActionCreators";
+import { useDispatch,useSelector} from "react-redux";
+import { loadData } from "../data/ActionCreators";
 import { DataTypes } from "../data/Types";
 import { Shop } from "./Shop";
 import {CartDetails} from './CartDetails';
@@ -12,47 +10,47 @@ import DataGetter from '../data/DataGetter.js';
 import { Checkout } from "./Checkout";
 import { Thanks } from "./Thanks";
 import {Description} from './Description';
+import Login from '../authentication/Login.js';
+import CreateAccount from '../authentication/CreateAccount.js';
+import {dataStore} from '../data/DataStore.js';
 
-const mapStateToProps = (dataStore) => ({
-    ...dataStore
-     })
-const mapDispatchToProps ={
-        loadData,addToCart, updateCartQuantity, removeFromCart, clearCart,placeOrder
-    }
-    // const filterProducts = (products = [], category) =>
-    // (!category || category === "All")
-    // ? products
-    // : products.filter(p => p.category.toLowerCase() === category.toLowerCase());
-    export const Connector = connect(mapStateToProps, mapDispatchToProps)(
-    class extends Component {
-    render() {
+
+export const AuthContext=React.createContext();
+  export   function Connector() {
+       const[data,setData]=useState();
+       const dispatch=useDispatch();
+
+       const dataStore=useSelector(dataStore=>({...dataStore}));
+       useEffect(()=>dispatch(loadData(DataTypes.CATEGORIES)),[dispatch]);
+      const handleChange=(e)=>{
+        setData(e)
+        console.log(data);
+      }
+   
        
     return <Switch>
+    
         <Redirect from="/shop/products/:category" to="/shop/products/:category/1" exact={true}/>
-    <Route exact={true} path={"/shop/products/:category/:page"} render={ (routeProps) =>
-        <DataGetter {...this.props} {...routeProps}>
-         <Shop { ...this.props } { ...routeProps }/>
-       </DataGetter> }/>
-
-    <Route path="/shop/cart" render={ (routeProps) =>
-    <CartDetails { ...this.props } { ...routeProps } />} />
+       <Route exact={true} path={"/shop/products/:category/:page"} render={ (routeProps) =>
+    <DataGetter {...dataStore} {...routeProps} data={data}>
+     <Shop { ...dataStore} { ...routeProps } handleChange={handleChange}/>
+    </DataGetter> }/>
+         <Route path="/shop/cart" render={ (routeProps) =>
+    <CartDetails { ...dataStore } { ...routeProps } />} />
     <Route path="/shop/checkout" render={ routeProps =>
-    <Checkout { ...this.props } { ...routeProps } /> } />
+    <Checkout { ...dataStore } { ...routeProps } /> } />
     <Route path="/shop/thanks" render={ routeProps =>
-    <Thanks { ...this.props } { ...routeProps } /> } />
+    <Thanks { ...dataStore} { ...routeProps } /> } />
     <Route path={"/shop/description/:id"} render={ (routeProps) =>
-    <Description { ...this.props } { ...routeProps } />} />
-
+    <Description { ...dataStore} { ...routeProps } />} />
+    <Route path={"/shop/login"} render={(routeProps)=>
+    <Login {...dataStore} {...routeProps}/>}/>
+    <Route path={"/shop/createaccount"} render={(routeProps)=>
+    <CreateAccount {...dataStore} {...routeProps}/>}/>
     <Redirect to="/shop/products/all/1" />
     </Switch>
-    }
-    componentDidMount() {
-    this.props.loadData(DataTypes.CATEGORIES);
-    // this.props.loadData(DataTypes.PRODUCTS);
-    // console.log(this.props.products)
-    // console.log( this.props.loadData(DataTypes.CATEGORIES))
-    // this.props.loadData(DataTypes.PRODUCTS);
     
-    }
-    }
-    )
+    }    
+   
+   
+       

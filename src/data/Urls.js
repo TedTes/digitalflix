@@ -1,14 +1,16 @@
-import {DataTypes} from './Types.js'
+import {DataTypes,ActionTypes} from './Types.js'
 
 const port=3030;
 const protocol="http";
+const sslProtocol="http";
 const hostname="localhost";
 export const RestUrls={
-    // [DataTypes.PRODUCTS]:`${protocol}://${hostname}:${port}/api/products`,
-    // [DataTypes.CATEGORIES]:`${protocol}://${hostname}:${port}/api/categories`,
-    // [DataTypes.ORDERS]: `${protocol}://${hostname}:${port}/api/orders`
+ 
+    [DataTypes.ORDERS]: `${sslProtocol}://${hostname}:3500/api/orders`,
     [DataTypes.PRODUCTS]:`${protocol}://${hostname}:${port}/products`,
-    [DataTypes.CATEGORIES]:`${protocol}://${hostname}:${port}/categories`
+    [DataTypes.CATEGORIES]:`${protocol}://${hostname}:${port}/categories`,
+    [ActionTypes.CREATE_ACCOUNT]:`${sslProtocol}://${hostname}:3500/api/register`,
+    [ActionTypes.LOGIN]:`${sslProtocol}://${hostname}:3500/api/login`
 }
 
 // export const restUrls={}

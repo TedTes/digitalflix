@@ -1,14 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
+import {useDispatch} from 'react-redux';
 import {Link} from "react-router-dom";
+import { addToCart } from "../data/CartActionCreators";
 import '../styles.css';
-export class ProductsList extends Component {
+export function ProductsList(props) {
 
-render() {
-if (this.props.products == null || this.props.products.length === 0) {
-return <h5 className="p-2">No Products</h5>
+const dispatch=useDispatch();
+if (props.products == null || props.products.length === 0) {
+return <h5 className="p-2"><div className="isLoading"></div></h5>
 }
-return this.props.products.filter(p=>p.image!=="Not Found").map((p) =>
-<div key={p.id} className="card-text bg-white p-1 d-grid">
+return props.products.filter(p=>p.image!=="Not Found").map((p) =>
+<div key={p.id}>
   <div>
     {/* <Description product={p}/> */}
     <Link  to={`/shop/description/${p.id}`} params={p.id} target="_blank">
@@ -19,11 +21,12 @@ return this.props.products.filter(p=>p.image!=="Not Found").map((p) =>
  <h4><span>
 <div>${ p.price.toFixed(2) }</div>
 <button className="btn btn-sm btn-primary"
-onClick={ () => this.props.addToCart(p) } >
+onClick={ () => dispatch(addToCart(p)) } >
 Add To Cart
 </button>
 </span></h4>
 </div>
 )
-}
+
+
 }

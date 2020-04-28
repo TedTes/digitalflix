@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { dataStore } from "./data/DataStore";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch, Redirect }
 from "react-router-dom";
 import { Connector } from "./shop/Connector";
-export default class App extends Component {
-render() {
+export default function App () {
+
 return <Provider store={ dataStore }>
 <Router>
 <Switch>
@@ -14,5 +14,4 @@ return <Provider store={ dataStore }>
 </Switch>
 </Router>
 </Provider>
-}
 }

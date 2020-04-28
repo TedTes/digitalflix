@@ -1,29 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
+import {useDispatch} from 'react-redux';
 import { ValidatedForm } from "../forms/ValidatedForm";
+import { placeOrder } from "../data/ActionCreators";
+import {  clearCart }
+from "../data/CartActionCreators";
 import '../styles.css'
-export class Checkout extends Component {
-constructor(props) {
-super(props);
-this.defaultAttrs = { type: "text", required: true };
-this.formModel = [
+export function Checkout(props) {
+// constructor(props) {
+// super(props);
+ const dispatch=useDispatch();
+const defaultAttrs = { type: "text", required: true };
+const formModel = [
 { label: "Name"},
 { label: "Email", attrs: { type: "email" }},
 { label: "Address" },
 { label: "City"},
 { label: "Zip/Postal Code", name: "zip"},
 { label: "Country"}]
+
+const handleSubmit = (formData) => {
+const order = { ...formData, products: props.cart?props.cart.map(item =>
+({ quantity: item.quantity, product_id: item.product.id})):[{}] }
+dispatch(placeOrder(order));
+dispatch(clearCart());
+props.history.push("/shop/thanks");
 }
-handleSubmit = (formData) => {
-const order = { ...formData, products: this.props.cart.map(item =>
-({ quantity: item.quantity, product_id: item.product.id})) }
-this.props.placeOrder(order);
-this.props.clearCart();
-this.props.history.push("/shop/thanks");
+const handleCancel = () => {
+props.history.push("/shop/cart");
 }
-handleCancel = () => {
-this.props.history.push("/shop/cart");
-}
-render() {
 return<div className="container">
 <div className="container-fluid">
 <div className="row">
@@ -33,15 +37,14 @@ return<div className="container">
 </div>
 <div className="row">
 <div className="col m-2">
-<ValidatedForm formModel={ this.formModel }
-defaultAttrs={ this.defaultAttrs }
-submitCallback={ this.handleSubmit }
-cancelCallback={ this.handleCancel }
+<ValidatedForm name="checkout" formModel={ formModel }
+defaultAttrs={ defaultAttrs }
+submitCallback={ handleSubmit }
+cancelCallback={ handleCancel }
 submitText="Place Order"
 cancelText="Return to Cart" />
 </div>
 </div>
 </div>
 </div>
-}
 }
