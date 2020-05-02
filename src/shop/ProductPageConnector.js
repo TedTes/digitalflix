@@ -13,7 +13,7 @@ navigateToPage: (page) => router.history.push(`/shop/products/${router.match.par
     })
 
 export const ProductPageConnector = (PageComponent) =>
-withRouter(connect(mapStateToProps, mapDispatchToProps,mergeProps)(PageComponent))
+withRouter(connect(mapStateToProps,null,mergeProps)(PageComponent))
 
     // || dataStore.pageSize || 5
 

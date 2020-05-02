@@ -4,7 +4,7 @@ import { ValidatedForm } from "../forms/ValidatedForm";
 import { placeOrder } from "../data/ActionCreators";
 import {  clearCart }
 from "../data/CartActionCreators";
-import '../styles.css'
+
 export function Checkout(props) {
 // constructor(props) {
 // super(props);
@@ -28,23 +28,16 @@ props.history.push("/shop/thanks");
 const handleCancel = () => {
 props.history.push("/shop/cart");
 }
-return<div className="container">
-<div className="container-fluid">
-<div className="row">
-<div className="col bg-dark text-white">
-<div className="navbar-brand header">DIGITALFLIX</div>
-</div>
-</div>
-<div className="row">
-<div className="col m-2">
+return<div className="checkout-form">
+<h1 className="forms-brandName">DIGITALFLIX</h1>
+<h2>Reciever Address</h2>
+<div>
 <ValidatedForm name="checkout" formModel={ formModel }
 defaultAttrs={ defaultAttrs }
 submitCallback={ handleSubmit }
 cancelCallback={ handleCancel }
 submitText="Place Order"
 cancelText="Return to Cart" />
-</div>
-</div>
 </div>
 </div>
 }

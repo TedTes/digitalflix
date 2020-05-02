@@ -13,7 +13,7 @@ ${ props.cartPrice.toFixed(2)}
  }
    const  getLinkClasses = () => {
     return `btn btn-sm bg-dark text-white
-    ${ props.cartItems === 0 ? "disabled": ""}`;
+    ${ props.cartItems === 0 || !props.cart? "disabled": ""}`;
     }
   
     return <div className="float-right">

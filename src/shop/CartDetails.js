@@ -5,11 +5,11 @@ import '../styles.css'
 
 export function CartDetails(props) {
 const getLinkClasses = () => `btn btn-secondary m-1
-${props.cartItems === 0 ? "disabled": ""}`;
+${props.cartItems === 0 || !props.cart? "disabled": ""}`;
 
-return <div className="container">
-<div className="m-3">
-<h2 className="text-center bg-primary">Your Cart</h2>
+return <div className="cartdetails-container">
+<h1 className="forms-brandName">DIGITALFLIX</h1>
+<h2 className="">Cart Details</h2>
 <table className="table table-bordered table-striped">
 <thead>
 <tr>
@@ -36,5 +36,5 @@ Checkout
 </Link>
 </div>
 </div>
-</div> 
+
 }

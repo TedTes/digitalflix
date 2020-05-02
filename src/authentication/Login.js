@@ -33,7 +33,7 @@ useEffect(()=> dispatch(login()),[])
       return (
         <div className="wrapper"> 
     <div className="login">
-      <h1 className="brandName">DIGITALFLIX</h1>
+      <h1 className="forms-brandName">DIGITALFLIX</h1>
         <h4 style={{marginBottom:".4em"}}>Login</h4> 
          <h6 className="text-danger" style={{ position:"absolute",marginBottom:"-3em",margingTop:"1em",padding:"0",fontSize:".8em",fontWeight:"bold"}}>{message}</h6>
           <form className="form-group" name="login" style={{marginTop:"2em"}}> 
@@ -47,6 +47,7 @@ useEffect(()=> dispatch(login()),[])
     </div>
   </form>
     </div>
+    <footer ><h1 className="copyright">Copyright 2020 digitalflix.com</h1></footer>
     </div>
 
       );

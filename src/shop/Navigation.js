@@ -5,16 +5,17 @@ import Accounts from '../authentication/Accounts';
 import '../styles.css';
 
 export function Navigation(props){
-const[toggle,setToggle]=useState(1);
+const[toggle,setToggle]=useState(0);
   const handleChange=(e)=>{
         props.handleChange(e);
         }
 const handleClick=()=>{
-  setToggle(!toggle);
+ setToggle(!toggle);
  const wrapper=document.getElementById("menu")
-!toggle?wrapper.style.display="flex":wrapper.style.display="none"
+wrapper.classList.toggle("dropdown")
+setTimeout(()=>wrapper.classList.remove("dropdown"),2500)
 }
-return  <div>
+return  <div >
 
 <div id="svg-icon" onClick={handleClick}><svg className="svg-icon"  viewBox="0 0 20 20">
 							<path  d="M1.683,3.39h16.676C18.713,3.39,19,3.103,19,2.749s-0.287-0.642-0.642-0.642H1.683
@@ -24,9 +25,8 @@ return  <div>
 								 M11.304,15.576H1.683c-0.354,0-0.641,0.287-0.641,0.642s0.287,0.641,0.641,0.641h9.621c0.354,0,0.642-0.286,0.642-0.641
 								S11.657,15.576,11.304,15.576z"></path>
 						</svg></div>
-     
-            <ul id="menu" className="dropdown">
-   <li className="submenu">
+   <ul>
+   <li  id="menu" className="horizontal-menu" >
  <a href={props.baseUrl } className="links text-white text-decoration-none">All</a>
 { props.categories && props.categories.map(cat =>
 <a key={ cat } href={ `${props.baseUrl}/${cat.toLowerCase()}`} className="links text-white text-decoration-none">

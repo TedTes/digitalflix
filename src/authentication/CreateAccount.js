@@ -23,13 +23,19 @@ export default function CreateAccount(props){
       if(Object.keys(validationErrors).length===0){ dispatch(createAccount(acct));}
     }
   
-    return( <div className="register">
-      <h1 className="brandName">DIGITALFLIX</h1>
+    return(<div>
+    <div  className="createAccount">
+    <div className="register">
+      <h1 className="forms-brandName">DIGITALFLIX</h1>
         <h3>Create Account</h3>
   <form name="createAccount">
   <ValidatedForm name="account" formModel={formModel} defaultAttrs={defaultAttrs} submitCallback2={handleSubmit} cancelCallback={handleCancel}/>
   </form>
     </div>
+    </div>
+    
+     <footer><h1 className="copyright">Copyright 2020 digitalflix.com</h1></footer>
+    </div> 
    
     
     

@@ -2,10 +2,13 @@ import React  from "react";
 export function PaginationButtons(props) {
 const getPageNumbers = () => {
 if (props.pageCount < 4) {
+    // console.log("from pagination")
+    // console.log([...Array(5).keys()].slice(1))
     return [...Array(props.pageCount + 1).keys()].slice(1);
 } else if (props.currentPage <= 4) {
 return [1, 2, 3, 4, 5];
 } else if (props.currentPage > props.pageCount - 4) {
+   
 return [...Array(5).keys()].reverse().map(v => props.pageCount - v);
 } else {
 return [props.currentPage -1, props.currentPage,props.currentPage + 1];

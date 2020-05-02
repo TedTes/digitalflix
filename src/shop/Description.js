@@ -17,16 +17,16 @@ useEffect(()=>{
 },[])
              return <div >
                  <div><Header {...props}/></div>
-                 <div className="d-flex desc">
-                     <div style={{marginLeft:"80px" ,marginTop:"30px"}}> 
-                     <img src={data.image} alt=""/></div>
+                 <div className="d-flex item-page">
+                    
+                     <img src={data.image} alt=""/>
                 
-                <div style={{marginLeft:"5px",marginTop:"50px"}}>
-                 <ul>
+                        <div className="description">
+                       <ul>
                          <li>{data.name}</li>
                          <li>{data.description}</li>
                  </ul>
-                 <div style={{marginLeft:"30px"}}>
+                 <div className="price-cta">
                  <h1>${data.price}</h1>
                  <button className="btn btn-lg btn-primary"
                 onClick={ () => dispatch(addToCart(data)) } >
