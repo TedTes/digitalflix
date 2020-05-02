@@ -30,7 +30,6 @@ const handleSubmit = (e) => {
    }else{
      delete newState[elem.name]
  } })
- console.log("from vali form ")
    FormElements(newState["password"])
  if(formElements.password!==undefined && formElements.password.value!==formElements.password2.value){
    newState["password2"]=GetMessages(formElements.password2);

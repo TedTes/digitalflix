@@ -8,6 +8,7 @@ GetData(datatype,params){
      }
 
      StoreData=(datatype,data)=>this.sendRequest("post",RestUrls[datatype],{},data)
+     
     
      sendRequest=(method,url,params,data)=>Axios.request({method,url,params,data})
  }

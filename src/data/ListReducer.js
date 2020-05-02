@@ -21,7 +21,15 @@ export const ListReducer=(dataStore={pageSize:25},action)=>{
         case ActionTypes.CREATE_ACCOUNT:
             return ({...dataStore,[action.payload.dataType]:action.payload.data})
         case ActionTypes.LOGIN:
-            return ({...dataStore,user:action.payload})
+            if(action.payload.data){
+              const dts={user:action.payload.data,...dataStore}
+              console.log("from reducer")
+              console.log(action.payload.data)
+              console.log(dts)
+                return (dts)
+               
+            }
+           break;
        default:  return dataStore || {}
     }
     

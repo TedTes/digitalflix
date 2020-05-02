@@ -1,44 +1,55 @@
-import React from "react";
+import React,{useState} from "react";
 import Search from './Search'
 import {Navbar,Nav,Col,Row} from 'react-bootstrap'
 import Accounts from '../authentication/Accounts';
-import '../styles.css'
+import '../styles.css';
 
 export function Navigation(props){
+const[toggle,setToggle]=useState(1);
   const handleChange=(e)=>{
         props.handleChange(e);
         }
+const handleClick=()=>{
+  setToggle(!toggle);
+ const wrapper=document.getElementById("menu")
+!toggle?wrapper.style.display="flex":wrapper.style.display="none"
+}
+return  <div>
 
-return  <Row ><Col xs="4" md="4" lg="7"> <Navbar bg="dark" expand="lg">
-   <img style={{color:"white",width:"50px",height:"50px",border:"1px white solid"}} src="../images/menu.png" alt=" "/>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" style={{background:"white"}} />
-  <Navbar.Collapse id="basic-navbar-nav" >
-  <Nav className="mr-auto">
- 
-    <Nav.Link href={props.baseUrl } className="text-white text-decoration-none">All</Nav.Link>
+<div id="svg-icon" onClick={handleClick}><svg className="svg-icon"  viewBox="0 0 20 20">
+							<path  d="M1.683,3.39h16.676C18.713,3.39,19,3.103,19,2.749s-0.287-0.642-0.642-0.642H1.683
+								c-0.354,0-0.641,0.287-0.641,0.642S1.328,3.39,1.683,3.39z M1.683,7.879h11.545c0.354,0,0.642-0.287,0.642-0.641
+								s-0.287-0.642-0.642-0.642H1.683c-0.354,0-0.641,0.287-0.641,0.642S1.328,7.879,1.683,7.879z M18.358,11.087H1.683
+								c-0.354,0-0.641,0.286-0.641,0.641s0.287,0.642,0.641,0.642h16.676c0.354,0,0.642-0.287,0.642-0.642S18.713,11.087,18.358,11.087z
+								 M11.304,15.576H1.683c-0.354,0-0.641,0.287-0.641,0.642s0.287,0.641,0.641,0.641h9.621c0.354,0,0.642-0.286,0.642-0.641
+								S11.657,15.576,11.304,15.576z"></path>
+						</svg></div>
+     
+            <ul id="menu" className="dropdown">
+   <li className="submenu">
+ <a href={props.baseUrl } className="links text-white text-decoration-none">All</a>
 { props.categories && props.categories.map(cat =>
-<Nav.Link key={ cat } href={ `${props.baseUrl}/${cat.toLowerCase()}`} className="text-white text-decoration-none">
+<a key={ cat } href={ `${props.baseUrl}/${cat.toLowerCase()}`} className="links text-white text-decoration-none">
 { cat}
-</Nav.Link> 
-)}
-</Nav> 
-</Navbar.Collapse>
-</Navbar>
-</Col>
-<Col>
-<div className="d-flex justify-content-md-end">
-  <span style={{paddingTop:".6em"}} ><Search  {...props}  handleChange={handleChange} /></span>
-  <span style={{margin:".1em"}}>
-<Accounts/>
-      </span>
+</a> 
+)}  
+   </li>
+ </ul> 
+
+
   
+<div className="sea-acc">
+<Search  {...props}  handleChange={handleChange} />
+ <Accounts/>
+</div>
   </div>
- </Col>
-</Row>
 }
 
-// className="btn btn-secondary btn-block" 
 
-// className="btn btn-secondary btn-block"
+
+
+
+
+
    
    

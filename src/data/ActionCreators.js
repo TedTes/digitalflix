@@ -46,7 +46,7 @@ export const loadData = (dataType, params) => ({
 
    export const login=(account)=>({
       type:ActionTypes.LOGIN,
-      payload:dataSource.StoreData(ActionTypes.LOGIN,account).then(response=>({name:response.data.name,authenticated:response.data.authenticated}))
+      payload:dataSource.StoreData(ActionTypes.LOGIN,account).then(response=>({data:response.data}))
    })
 
    export const logout=(account)=>({

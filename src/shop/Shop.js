@@ -24,21 +24,14 @@ export function Shop(props){
 return <div className="container-fluid">
 <div className=" sticky-top bg-dark text-white" style={{height:"6.4em"}} >
 <div className="navbar-brand d-flex" >
-<h4 className="font-italic" style={{width:"90%",paddingLeft:".6em"}}>DIGITALFLIX</h4>
-<div >
+<h4 className="brand">DIGITALFLIX</h4>
+<div className="cart">
 <CartSummary {...props}/>
 </div>
 </div>
-<AuthContext.Provider value={props}>
 <Navigation handleChange={handleChange} baseUrl="/shop/products" categories={ props.categories }  />
-</AuthContext.Provider>
-
-
-
 </div>
-
-   
-   <div className="grid-view">
+<div className="grid-view">
 <ProductsList products={ props.products } addToCart={ handleAddToCart } clssName="card"/>   
 </div>     
  

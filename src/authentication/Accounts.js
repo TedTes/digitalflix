@@ -1,21 +1,21 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Dropdown} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 export default function Accounts(props) {
- 
-
+ const[data,setData]=useState({...props.user});
+const handleClick=(props)=>{
+  console.log(data.name)
+  console.log(props)
+}
  return (
     <>
-      <Dropdown>
-  <Dropdown.Toggle variant="outline-light" style={{color:"white",marginBottom:"-1em"}} id="dropdown-basic">
-   Accounts
-  </Dropdown.Toggle>
-<Dropdown.Menu >
-   <Link to="/shop/login" style={{textDecoration:"none",paddingLeft:".4em",color:"black"}}>Login</Link>
-    <Link to="/shop/createaccount" style={{display:"block",textDecoration:"none",paddingLeft:".4em",color:"black"}} >Create Accounts</Link>
-  </Dropdown.Menu>
-</Dropdown>
+    
+<div className="account" onClick={handleClick}>
+   <Link to="/shop/login" style={{color:"white"}} >Login</Link>/
+    <Link to="/shop/createaccount" style={{color:"white"}} >Register</Link>
+  </div>
+
  
     </>
   );

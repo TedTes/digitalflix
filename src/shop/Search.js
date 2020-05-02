@@ -8,7 +8,9 @@ props.handleChange(e.target.value)
 
         return(
             <React.Fragment>
-     <input className="input" type="text" size='24.5' placeholder="  search" onChange={handleChange}/>
+              
+                <input className="input" type="text" width='40' placeholder="search" onChange={handleChange}/>
+            
      </React.Fragment>
         )
     }

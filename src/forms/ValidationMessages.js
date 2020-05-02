@@ -16,7 +16,7 @@ export const GetMessages = (elem) => {
         messages.push("password do not match!")
     }
 if(elem.name==="password2" && elem.validity.valueMissing && formElements===undefined){
-  messages.push("please enter password to confirm")
+  messages.push("please re-enter the password to confirm")
 }
 return messages;
     }
