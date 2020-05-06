@@ -49,8 +49,8 @@ export const loadData = (dataType, params) => ({
       payload:dataSource.StoreData(ActionTypes.LOGIN,account).then(response=>({data:response.data}))
    })
 
-   export const logout=(account)=>({
+   export const logout=()=>({
       type:ActionTypes.LOGOUT,
-      payload:dataSource.StoreData(ActionTypes.LOGOUT,account).then(response=>response)
+      payload:{"authenticated":false}
    })
 

@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { Switch, Route, Redirect }
 from "react-router-dom"
-import { useDispatch,useSelector} from "react-redux";
+import { useDispatch,useSelector,shallowEqual} from "react-redux";
 import { loadData } from "../data/ActionCreators";
 import { DataTypes } from "../data/Types";
 import { Shop } from "./Shop";
@@ -12,16 +12,13 @@ import { Thanks } from "./Thanks";
 import {Description} from './Description';
 import Login from '../authentication/Login.js';
 import CreateAccount from '../authentication/CreateAccount.js';
-import {dataStore} from '../data/DataStore.js';
 
-
-export const AuthContext=React.createContext();
   export   function Connector() {
        const[data,setData]=useState();
        const dispatch=useDispatch();
-
-       const dataStore=useSelector(dataStore=>({...dataStore}));
        useEffect(()=>dispatch(loadData(DataTypes.CATEGORIES)),[dispatch]);
+       const dataStore=useSelector(dataStore=>({...dataStore}),shallowEqual);
+       const user=dataStore.user
       const handleChange=(e)=>{
         setData(e)
         console.log(data);
@@ -44,7 +41,7 @@ export const AuthContext=React.createContext();
     <Route path={"/shop/description/:id"} render={ (routeProps) =>
     <Description { ...dataStore} { ...routeProps } />} />
     <Route path={"/shop/login"} render={(routeProps)=>
-    <Login {...dataStore} {...routeProps}/>}/>
+    <Login user={user} {...routeProps}/>}/>
     <Route path={"/shop/createaccount"} render={(routeProps)=>
     <CreateAccount {...dataStore} {...routeProps}/>}/>
     <Redirect to="/shop/products/all/1" />

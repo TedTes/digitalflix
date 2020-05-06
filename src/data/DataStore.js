@@ -5,5 +5,17 @@ import {CommonReducer} from './CommonReducer';
 // import {loadData} from './ActionCreators'
 import {asyncAction} from './asyncMiddleware';
 
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-export const dataStore=createStore(CommonReducer(ListReducer,CartReducer),applyMiddleware(asyncAction));
+const persistConfig = {
+    key: 'root',
+    storage,
+    blacklist:['products']
+  }
+  
+    const persistedReducer = persistReducer(persistConfig, CommonReducer(ListReducer,CartReducer))
+   
+  
+export const dataStore=createStore(persistedReducer,applyMiddleware(asyncAction));
+export const persistor=persistStore(dataStore)

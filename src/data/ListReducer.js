@@ -22,14 +22,12 @@ export const ListReducer=(dataStore={pageSize:25},action)=>{
             return ({...dataStore,[action.payload.dataType]:action.payload.data})
         case ActionTypes.LOGIN:
             if(action.payload.data){
-              const dts={user:action.payload.data,...dataStore}
-              console.log("from reducer")
-              console.log(action.payload.data)
-              console.log(dts)
-                return (dts)
-               
-            }
+            const dataStor=Object.assign({...dataStore},{user:action.payload.data})
+                return ( dataStor)
+                 }
            break;
+        case ActionTypes.LOGOUT:
+            return ({...dataStore,user:action.payload})
        default:  return dataStore || {}
     }
     

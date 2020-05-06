@@ -19,11 +19,12 @@
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0"
   },
   "scripts": {
     "start": "npm-run-all --parallel  reactstart api webservice ",
-    "api":"cd api-playground & npm run start ",
+    "api": "cd api-playground & npm run start ",
     "reactstart": "react-scripts start",
     "webservice": "node webserver/server.js",
     "build": "react-scripts build",

@@ -1,33 +1,29 @@
 import React,{useState,useEffect} from 'react';
 import {Button} from 'react-bootstrap';
 import {login} from '../data/ActionCreators';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector,shallowEqual} from 'react-redux';
 
 export default function Login(props) {
+    const data={...props.user}
+ 
+     if(data.authenticated){
+    props.history.push('/shop/products')
+  }  
+
     var form=document.forms.login;
     const[message,setMessage]=useState('');
-    // const[data,setData]=useState({...props.user})
     const dispatch=useDispatch();
-
-useEffect(()=> dispatch(login()),[])
      const handleCancel=()=>{
        props.history.push('/shop/products')
      }
     const  handleSubmit=()=>{
-     (!form.checkValidity())?setMessage("please provide valid username & password"):setMessage("")
+     (!form.checkValidity()||!data.authenticated)?setMessage("please provide valid username & password"):setMessage("")
   const account={
         name:form.name.value,
         password:form.password.value
     }
     if((account.name!=='' && account.password!=='')){
- dispatch(login(account)) ;
-   console.log("from dis")
-   console.log(props)
-    const data={...props.user}
-    console.log(data.authenticated)
-  // if(data.authenticated){
-  //   props.history.push('/shop/products')
-  // }  
+     dispatch(login(account)) ;
 }
     }
       return (
