@@ -29,10 +29,7 @@
     "redux-persist": "^6.0.0"
   },
   "scripts": {
-    "start": "reactstart api webservice",
-    "reactstart": "react-scripts start",
-    "api": "cd api-playground & npm run start ",
-    "webservice": "node webserver/server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
