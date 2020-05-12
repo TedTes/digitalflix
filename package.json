@@ -30,8 +30,8 @@
   },
   "scripts": {
     "start": "npm-run-all --parallel  reactstart api webservice ",
-    "api": "cd api-playground & npm run start ",
     "reactstart": "react-scripts start",
+    "api": "cd api-playground & npm run start ",
     "webservice": "node webserver/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
