@@ -29,7 +29,7 @@
     "redux-persist": "^6.0.0"
   },
   "scripts": {
-    "start": "npm-run-all --parallel  reactstart api webservice ",
+    "start": "reactstart api webservice",
     "reactstart": "react-scripts start",
     "api": "cd api-playground & npm run start ",
     "webservice": "node webserver/server.js",
