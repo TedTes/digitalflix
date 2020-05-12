@@ -2,7 +2,7 @@ const express=require('express');
 const {connectToDB,insertOrders,register,login,ordersList}=require('./Database.js')
 
 const cors=require('cors');
-const port=3500;
+const port=process.env.PORT||3500;
 const app=express();
 
 app.use(cors());
@@ -38,4 +38,4 @@ app.post("/api/login",async (req,res)=>{
 //     console.log("Reloading web servcie data complete")
 // });
 
-app.listen(process.env.PORT||port,()=>console.log(`web service running on port ${port}`));
+app.listen(port,()=>console.log(`web service running on port ${port}`));
