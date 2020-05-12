@@ -28,9 +28,6 @@ async function register(account){
     
 }
 async function login(account){
-    console.log(process.env.DB_URL)
-    console.log("from db")
-    console.log(account)
     if( await db.collection("accounts").findOne({name:account.name,password:account.password}))
     {
         if(account.name==="Admin")
