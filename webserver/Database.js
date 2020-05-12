@@ -3,7 +3,6 @@ const {MongoClient}=require('mongodb')
 
 let db;
 async function connectToDB(url){
-    // const DB_URL='mongodb+srv://Admin:admin&321@cluster0-9zj1s.mongodb.net/digitalflix?retryWrites=true&w=majority'
     try{
         const client=await MongoClient.connect(url,{useNewUrlParser:true,useUnifiedTopology:true});
         db=client.db("digitalflix")
