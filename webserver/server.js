@@ -12,9 +12,9 @@ app.use(cors());
     await connectToDB(process.env.DB_URL2);
 
 })();
-app.get('/',(req,res)=>{
-    res.send("hello world")
-})
+// app.get('/',(req,res)=>{
+//     res.send("hello world")
+// })
 app.post('/api/orders',(req,res)=>{
     insertOrders(req.body)
 })
