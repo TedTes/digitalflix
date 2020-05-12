@@ -2,7 +2,7 @@ const express=require('express');
 const {connectToDB,insertOrders,register,login,ordersList}=require('./Database.js')
 
 const cors=require('cors');
-const port=process.argv[3] || 3500;
+const port=3500;
 const app=express();
 
 app.use(cors());
