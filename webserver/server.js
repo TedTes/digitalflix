@@ -38,4 +38,4 @@ app.post("/api/login",async (req,res)=>{
 //     console.log("Reloading web servcie data complete")
 // });
 
-app.listen(port,()=>console.log(`web service running on port ${port}`));
+app.listen(process.env.PORT||port,()=>console.log(`web service running on port ${port}`));
