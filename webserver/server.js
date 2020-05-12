@@ -1,5 +1,4 @@
 const express=require('express');
-const jsonServer=require('json-server');
 const {connectToDB,insertOrders,register,login,ordersList}=require('./Database.js')
 
 const cors=require('cors');
