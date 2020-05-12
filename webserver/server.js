@@ -1,5 +1,4 @@
 const express=require('express');
-const jsonServer=require('json-server');
 const {connectToDB,insertOrders,register,login,ordersList}=require('./Database.js')
 
 const cors=require('cors');
@@ -7,7 +6,6 @@ const port=process.argv[3] || 3500;
 const app=express();
 
 app.use(cors());
-app.use(jsonServer.bodyParser);
 // app.use('/api',(req,res,next)=>router(req,res,next));
 
 (async function(){
