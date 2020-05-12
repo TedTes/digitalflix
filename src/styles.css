@@ -32,6 +32,24 @@
     margin-right:1.1em;
     margin-bottom:.3em;
 }
+.orders{
+
+    background:rgb(66, 66, 241);
+    position:absolute;
+    right:1em;
+    top:40px;
+    color:white;
+    font-size:.6em;
+    font-weight:bold;
+    border-radius:8px;
+    padding:.6em;
+}
+.orders_table{
+padding:2em;
+}
+.orders:hover{
+    color:white;
+}
 svg{
     width:65px;
     height:65px;

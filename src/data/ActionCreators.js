@@ -38,7 +38,10 @@ export const loadData = (dataType, params) => ({
       .then(response=>({dataType:DataTypes.ORDERS,payload:response.data}))
    })
 
-
+  export const ordersList=()=>({
+     type:ActionTypes.ORDERS_LIST,
+     payload:dataSource.GetData(DataTypes.ORDERS_LIST).then(response=>({dataType:ActionTypes.ORDERS_LIST,payload:response.data}))
+  })
    export const createAccount=(account)=>({
       type:ActionTypes.CREATE_ACCOUNT,
       payload:dataSource.StoreData(ActionTypes.CREATE_ACCOUNT,account).then(response=>({dataType:ActionTypes.CREATE_ACCOUNT,data:response.data}))

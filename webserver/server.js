@@ -1,6 +1,6 @@
 const express=require('express');
 const jsonServer=require('json-server');
-const {connectToDB,insertOrders,register,login}=require('./Database.js')
+const {connectToDB,insertOrders,register,login,ordersList}=require('./Database.js')
 
 const cors=require('cors');
 const port=process.argv[3] || 3500;
@@ -11,7 +11,7 @@ app.use(jsonServer.bodyParser);
 // app.use('/api',(req,res,next)=>router(req,res,next));
 
 (async function(){
-    await connectToDB();
+    await connectToDB(process.env.DB_URL2);
 
 })();
 app.get('/',(req,res)=>{
@@ -22,6 +22,9 @@ app.post('/api/orders',(req,res)=>{
 })
 app.post('/api/register',(req,res)=>{
     register(req.body);
+})
+app.get('/api/orderslist',async (req,res)=>{
+    res.send(await ordersList());
 })
 
 app.post("/api/login",async (req,res)=>{

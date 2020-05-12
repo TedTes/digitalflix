@@ -11,6 +11,7 @@ import { Checkout } from "./Checkout";
 import { Thanks } from "./Thanks";
 import {Description} from './Description';
 import Login from '../authentication/Login.js';
+import Orders from './Orders'
 import CreateAccount from '../authentication/CreateAccount.js';
 
   export   function Connector() {
@@ -44,6 +45,8 @@ import CreateAccount from '../authentication/CreateAccount.js';
     <Login user={user} {...routeProps}/>}/>
     <Route path={"/shop/createaccount"} render={(routeProps)=>
     <CreateAccount {...dataStore} {...routeProps}/>}/>
+    <Route path={'/shop/orders'} render={(routeProps)=>
+    <Orders ordersList={dataStore.ordersList} {...routeProps}/>}/>
     <Redirect to="/shop/products/all/1" />
     </Switch>
     

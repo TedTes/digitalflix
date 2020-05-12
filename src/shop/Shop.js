@@ -6,12 +6,13 @@ import { ProductPageConnector } from "./ProductPageConnector";
 import { PaginationControls } from "../controls/PaginationControls";
 import { addToCart} from "../data/CartActionCreators";
 import {useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
 import  '../styles.css';
 
 export const AuthContext=React.createContext();
 const ProductPages = ProductPageConnector(PaginationControls);
 export function Shop(props){
-  
+     const data={...props.user}
      const dispatch=useDispatch();
 
         const handleChange=(e)=>{
@@ -29,6 +30,7 @@ return <div className="container-fluid">
 <CartSummary {...props}/>
 </div>
 </div>
+{data.roles==="Admin"?<Link to="/shop/orders" className="orders">CHECK ORDERS</Link>:''}
 <Navigation handleChange={handleChange} baseUrl="/shop/products" categories={ props.categories }  />
 </div>
 <div className="grid-view">

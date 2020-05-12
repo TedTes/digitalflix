@@ -5,12 +5,10 @@ import {useDispatch,useSelector,shallowEqual} from 'react-redux';
 
 export default function Login(props) {
     const data={...props.user}
- 
      if(data.authenticated){
     props.history.push('/shop/products')
   }  
-
-    var form=document.forms.login;
+ var form=document.forms.login;
     const[message,setMessage]=useState('');
     const dispatch=useDispatch();
      const handleCancel=()=>{

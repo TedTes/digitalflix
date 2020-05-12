@@ -15,5 +15,6 @@ export const ActionTypes = {
     CART_CLEAR: "cart_clear",
     CREATE_ACCOUNT:"create_account",
     LOGIN:"login",
-    LOGOUT:"logout"
+    LOGOUT:"logout",
+    ORDERS_LIST:"orders_list"
   }

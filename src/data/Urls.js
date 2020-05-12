@@ -7,6 +7,7 @@ const hostname="localhost";
 export const RestUrls={
  
     [DataTypes.ORDERS]: `${sslProtocol}://${hostname}:3500/api/orders`,
+    [DataTypes.ORDERS_LIST]:`${sslProtocol}://${hostname}:3500/api/orderslist`,
     [DataTypes.PRODUCTS]:`${protocol}://${hostname}:${port}/products`,
     [DataTypes.CATEGORIES]:`${protocol}://${hostname}:${port}/categories`,
     [ActionTypes.CREATE_ACCOUNT]:`${sslProtocol}://${hostname}:3500/api/register`,
