@@ -1,2 +1,2 @@
-web:cd api-playground && node src/
+web:node api-playground/src/
 web:node webserver/server.js
