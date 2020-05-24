@@ -7,7 +7,6 @@ import { Connector } from "./shop/Connector";
 import { PersistGate } from 'redux-persist/integration/react'
 export default function App () {
 
-    console.log(dataStore)
 return <Provider store={ dataStore }>
     <PersistGate loading={null} persistor={persistor}>
 <Router>
