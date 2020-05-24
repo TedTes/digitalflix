@@ -30,10 +30,9 @@
     "serve": "^11.3.0"
   },
   "scripts": {
-   
-    "api": "cd api-playground && npm run start ",
-    "reactstart": "react-scripts start",
-    "webservice": "node webserver/server.js",
+    "api": "cd api-playground & npm run start ",
+    "start": "serve -s build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
