@@ -1,2 +1,2 @@
-web:cd api-playground && npm run start
+web:cd api-playground && node src/
 web:node webserver/server.js
