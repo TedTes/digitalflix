@@ -30,7 +30,7 @@
     "serve": "^11.3.0"
   },
   "scripts": {
-    "start": "npm-run-all --parallel  reactstart api webservice ",
+   
     "api": "cd api-playground && npm run start ",
     "reactstart": "react-scripts start",
     "webservice": "node webserver/server.js",
