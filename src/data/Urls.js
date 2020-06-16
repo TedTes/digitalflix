@@ -1,6 +1,6 @@
 import {DataTypes,ActionTypes} from './Types.js'
 
-const port=process.env.PORT || 3030;
+// const port=process.env.PORT || 3030;
 const port2=process.env.PORT || 3200;
 const protocol="http";
 
@@ -9,8 +9,10 @@ export const RestUrls={
  
     [DataTypes.ORDERS]: `${protocol}://${hostname}:${port2}/api/orders`,
     [DataTypes.ORDERS_LIST]:`${protocol}://${hostname}:${port2}/api/orderslist`,
-    [DataTypes.PRODUCTS]:`${protocol}://${hostname}:${port}/products`,
-    [DataTypes.CATEGORIES]:`${protocol}://${hostname}:${port}/categories`,
+    // [DataTypes.PRODUCTS]:`${protocol}://${hostname}:${port}/products`,
+    // [DataTypes.CATEGORIES]:`${protocol}://${hostname}:${port}/categories`,
+    [DataTypes.PRODUCTS]:`https://apiecom.herokuapp.com/products`,
+    [DataTypes.CATEGORIES]:`https://apiecom.herokuapp.com/categories`,
     [ActionTypes.CREATE_ACCOUNT]:`${protocol}://${hostname}:${port2}/api/register`,
     [ActionTypes.LOGIN]:`${protocol}://${hostname}:${port2}/api/login`
 }
