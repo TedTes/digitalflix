@@ -1,6 +1,6 @@
 import {DataTypes,ActionTypes} from './Types.js'
 
-const port=3030;
+const port=process.env.PORT || 3030;
 const port2=process.env.PORT || 3200;
 const protocol="http";
 
