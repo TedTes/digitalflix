@@ -25,8 +25,7 @@ app.get('/api/orderslist',async (req,res)=>{
 
 app.post("/api/login",async (req,res)=>{
     console.log("from app server")
-    
-   res.send(await login(req.body));
+    res.send(await login(req.body));
     
 })
 
