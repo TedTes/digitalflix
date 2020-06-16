@@ -11,7 +11,7 @@ const dispatch=useDispatch();
 const[data,setData]=useState([])
 useEffect(()=>{
     // const url=`http://localhost:3030/products/${props.match.params.id}`
-    const url=`https://apiecom.herokuapp.com/${props.match.params.id}`
+    const url=`https://apiecom.herokuapp.com/products/${props.match.params.id}`
     Axios.request({method:"get",url:url}).then(response=>setData(response.data))
     // console.log(data)
    
