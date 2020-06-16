@@ -35,5 +35,5 @@ app.post("/api/login",async (req,res)=>{
 //     createServer();
 //     console.log("Reloading web servcie data complete")
 // });
-const port=process.env.PORT||process.env.PORT_SECONDARY;
+const port=3200 || process.env.PORT;
 app.listen(port,()=>console.log(`web service running on port ${port}`));
