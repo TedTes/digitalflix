@@ -1,38 +1,42 @@
 const express=require('express');
 const {connectToDB,insertOrders,register,login,ordersList}=require('./Database.js')
 const cors=require('cors');
-
 const app=express();
+
+
+
 app.use(cors());
+
+
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+
+
 // app.use('/api',(req,res,next)=>router(req,res,next));
 
 (async function(){
     await connectToDB(process.env.DB_URL2);
-
 })();
 app.get('/',(req,res)=>{
-    res.send("hello world")
+    console.log("home page");
+})
+app.post('/',(req,res)=>{
+    // console.log("from post")
+    // console.log(req.body);
 })
 app.post('/api/orders',(req,res)=>{
     insertOrders(req.body)
 })
-app.post('/api/register',(req,res)=>{
-    register(req.body);
+app.post('/api/register',async (req,res)=>{
+ res.send(await register(req.body)) ;
 })
 app.get('/api/orderslist',async (req,res)=>{
     res.send(await ordersList());
 })
 
 app.post("/api/login",async (req,res)=>{
-    console.log("from app server")
-    res.send(await login(req.body));
-    
-})
+res.send(await login(req.body));
+    });
 
-// chokidar.watch(fileName).on("change",()=>{
-//     console.log("Reloading web Service data");
-//     createServer();
-//     console.log("Reloading web servcie data complete")
-// });
-const port=3200 || process.env.PORT;
+const port=3000 || process.env.PORT;
 app.listen(port,()=>console.log(`web service running on port ${port}`));

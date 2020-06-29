@@ -19,12 +19,16 @@ export const ListReducer=(dataStore={pageSize:25},action)=>{
           return ({...dataStore,orders:action.payload.data})
           break;
         case ActionTypes.ORDERS_LIST:
-            return({...dataStore,ordersList:action.payload})
+            if(action.payload.data){
+                const dataStor=Object.assign({...dataStore},{ordersList:action.payload.data})
+              return dataStor;
+            }
+         break;
         case ActionTypes.CREATE_ACCOUNT:
             return ({...dataStore,[action.payload.dataType]:action.payload.data})
         case ActionTypes.LOGIN:
             if(action.payload.data){
-            const dataStor=Object.assign({...dataStore},{user:action.payload.data})
+               const dataStor=Object.assign({...dataStore},{user:action.payload.data})
                 return ( dataStor)
                  }
            break;

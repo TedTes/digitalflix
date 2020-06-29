@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {useDispatch} from 'react-redux';
 import { ValidatedForm } from "../forms/ValidatedForm";
 import { createAccount } from "../data/ActionCreators";
@@ -20,11 +20,14 @@ export default function CreateAccount(props){
         email:data.email.value,
         password:data.password.value
      }
-      if(Object.keys(validationErrors).length===0){ dispatch(createAccount(acct));}
+      if(Object.keys(validationErrors).length===0){ 
+        dispatch(createAccount(acct));
+       props.history.push('/shop/products')
+        }
     }
   
     return(<div>
-    <div  className="createAccount">
+  <div  className="createAccount">
     <div className="register">
       <h1 className="forms-brandName">DIGITALFLIX</h1>
         <h3>Create Account</h3>
@@ -33,12 +36,5 @@ export default function CreateAccount(props){
   </form>
     </div>
     </div>
-    
      <footer><h1 className="copyright">Copyright 2020 digitalflix.com</h1></footer>
-    </div> 
-   
-    
-    
-  
-    )
-  }
+    </div>)}

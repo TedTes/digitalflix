@@ -1,6 +1,5 @@
 import React,{useState} from "react";
 import Search from './Search'
-import {Navbar,Nav,Col,Row} from 'react-bootstrap'
 import Accounts from '../authentication/Accounts';
 import '../styles.css';
 

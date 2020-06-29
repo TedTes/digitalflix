@@ -16,5 +16,6 @@ export const ActionTypes = {
     CREATE_ACCOUNT:"create_account",
     LOGIN:"login",
     LOGOUT:"logout",
-    ORDERS_LIST:"orders_list"
+    ORDERS_LIST:"orders_list",
+    GOOGLE_LOGIN:"google_login"
   }

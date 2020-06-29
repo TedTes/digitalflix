@@ -1,11 +1,37 @@
 require('dotenv').config();
-const {MongoClient}=require('mongodb')
+const mongoose=require('mongoose');
+// const {MongoClient}=require('mongodb')
 
-let db;
+ 
+const userSchema=new mongoose.Schema({
+    name:String,
+    password:String,
+    email:String,
+    id:String
+});
+const orderSchema=new mongoose.Schema({
+    name:String,
+    email:String,
+    address:String,
+    city:String,
+    zip:String,
+    country:String,
+    products:{
+        quantity:Number,
+        product_id:Number
+    },
+
+})
+
+const User= mongoose.model('user',userSchema)
+const Order=mongoose.model('order',orderSchema)
 async function connectToDB(url){
     try{
-        const client=await MongoClient.connect(url,{useNewUrlParser:true,useUnifiedTopology:true});
-        db=client.db("digitalflix")
+
+        mongoose.connection=await mongoose.connect(url, {
+           useNewUrlParser: true,
+           useUnifiedTopology: true
+});
     }
     catch(err){
         console.log("not connected")
@@ -16,30 +42,48 @@ console.log(err)
 }
 
 async function insertOrders(orders)
-{
-    console.log(orders);
-   
-    await db.collection("orders").insertOne(orders)
+{  
+    try{
+        const order=new Order(orders);
+        order.save();
+    }
+    catch(e){
+console.log("error in database saving orders"+e);
+    }
+
 }
  
 
 async function register(account){
- await db.collection("accounts").insertOne(account);
+//  await db.collection("users").insertOne(account);
+const user=await new User(account);
+try{
+    return user.save();
+}
+  catch(err){console.log("console.log"+err)}
     
 }
 async function login(account){
-    if( await db.collection("accounts").findOne({name:account.name,password:account.password}))
+ try{
+    if( await User.findOne({name:account.name,password:account.password}))
     {
         if(account.name==="Admin")
-        return ({name:account.name,authenticated:true,roles:"Admin"})
+        return ({name:account.name,valid:true,roles:"Admin"})
+        else return ({name:account.name,valid:true,roles:"user"})
     }
-    else{
-        return({authenticated:false})
+     else{
+        return({valid:false})
     }
-    
+ }
+ catch(err){
+     console.log("database error"+err)
+ }}
+
+ function getConnection(){
+    return mongoose;
 }
 async function ordersList(){
-   const result=await db.collection("orders").find({}).toArray();
+   const result=await Order.find({});
    return result;
 }
-module.exports={connectToDB,insertOrders,register,login,ordersList}
+module.exports={connectToDB,insertOrders,register,login,ordersList,getConnection,User,userSchema}

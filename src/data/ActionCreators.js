@@ -40,7 +40,7 @@ export const loadData = (dataType, params) => ({
 
   export const ordersList=()=>({
      type:ActionTypes.ORDERS_LIST,
-     payload:dataSource.GetData(DataTypes.ORDERS_LIST).then(response=>({dataType:ActionTypes.ORDERS_LIST,payload:response.data}))
+     payload:dataSource.GetData(DataTypes.ORDERS_LIST).then(response=>({dataType:ActionTypes.ORDERS_LIST,data:response.data}))
   })
    export const createAccount=(account)=>({
       type:ActionTypes.CREATE_ACCOUNT,
@@ -51,9 +51,12 @@ export const loadData = (dataType, params) => ({
       type:ActionTypes.LOGIN,
       payload:dataSource.StoreData(ActionTypes.LOGIN,account).then(response=>({data:response.data}))
    })
-
+   // export const googleLogin=()=>({
+   //    type:ActionTypes.GOOGLE_LOGIN,
+   //    payload:dataSource.GetData(ActionTypes.GOOGLE_LOGIN).then(response=>({data:response.data}))
+   // })
    export const logout=()=>({
       type:ActionTypes.LOGOUT,
-      payload:{"authenticated":false}
+      payload:{"valid":false}
    })
 

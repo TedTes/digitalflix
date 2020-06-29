@@ -1,29 +1,36 @@
 import React,{useState,useEffect} from 'react';
 import {Button} from 'react-bootstrap';
 import {login} from '../data/ActionCreators';
-import {useDispatch,useSelector,shallowEqual} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 export default function Login(props) {
+
     const data={...props.user}
-     if(data.authenticated){
+    const[message,setMessage]=useState('');
+     if(data.valid){
     props.history.push('/shop/products')
   }  
  var form=document.forms.login;
-    const[message,setMessage]=useState('');
-    const dispatch=useDispatch();
+
+    
+    useEffect(()=>setMessage(message),[message]);
+     const dispatch=useDispatch();
      const handleCancel=()=>{
        props.history.push('/shop/products')
      }
     const  handleSubmit=()=>{
-     (!form.checkValidity()||!data.authenticated)?setMessage("please provide valid username & password"):setMessage("")
   const account={
         name:form.name.value,
         password:form.password.value
     }
-    if((account.name!=='' && account.password!=='')){
-     dispatch(login(account)) ;
-}
-    }
+    let isMissingName=form.name.validity.valueMissing;
+    let isMissingPassword=form.password.validity.valueMissing
+    if((!isMissingName && !isMissingPassword)){
+   dispatch(login(account));
+   setTimeout(()=>{if(data.valid===false)setMessage("please provide valid username & password")},100)
+     }
+else setMessage("please provide valid username & password")
+ }
       return (
         <div className="wrapper"> 
     <div className="login">
@@ -40,7 +47,7 @@ export default function Login(props) {
         <Button onClick={handleSubmit} >Login</Button>
     </div>
   </form>
-    </div>
+      </div>
     <footer ><h1 className="copyright">Copyright 2020 digitalflix.com</h1></footer>
     </div>
 

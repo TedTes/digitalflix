@@ -3,11 +3,10 @@ import {useDispatch} from 'react-redux';
 import {ordersList} from '../data/ActionCreators';
 import {Table} from 'react-bootstrap';
 export default function Orders(props){
-    console.log(props)
     const dispatch=useDispatch();
     const[data,setData]=useState([]);
     useEffect(()=>dispatch(ordersList()),[])
-    useEffect(()=>setData(props.ordersList.payload),[props.ordersList])
+    useEffect(()=>setData(props.ordersList),[props.ordersList])
     return(<div className="orders_table">
         <Table striped bordered hover>
   <thead>

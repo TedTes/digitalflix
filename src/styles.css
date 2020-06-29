@@ -111,20 +111,44 @@ footer{
     font-size:1.7em;
 }
 .login{
+    position:relative;
     width:440px;
     margin:0 auto;
-    border:solid black 1px;
+    border:solid black .5px;
     padding:2em;
     margin-top:3em;
     background:white;
     animation:drop .7s ease-in;
   }
+  .register-success-message{
+      display:absolute;
+      width:400px;
+      height:500px;
+  }
+  /* .google-login-btn{
+    position:absolute;
+   top:11.7em;
+   right:2.5em;
+    font-size:.8em;
+    font-weight:bold;
+    color:black;
+    border:1px solid black;
+    width:140px;
+    text-align:center;
+   border-radius:3px;
+}
+.google-login-btn:hover{
+   text-decoration:none;
+   transform:scale(1.01);
+} */
 .copyright{
     position:absolute;
     top:70%;
     left:40%;
     font-size:.7em;
 }
+
+
 .cartdetails-container{
     margin-top:2em;
     width:960px;

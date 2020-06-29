@@ -4,6 +4,5 @@ export const CommonReducer=(...reducers)=>(dataStore,action)=>{
         if(newStore!==dataStore)
         return newStore;
     }
-
     return dataStore;
 }
