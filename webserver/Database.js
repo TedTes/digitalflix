@@ -25,10 +25,9 @@ const orderSchema=new mongoose.Schema({
 
 const User= mongoose.model('user',userSchema)
 const Order=mongoose.model('order',orderSchema)
-async function connectToDB(url){
+async function connectToDB(){
     try{
-
-        mongoose.connection=await mongoose.connect(url, {
+        mongoose.connection=await mongoose.connect(process.env.MONGO_URL, {
            useNewUrlParser: true,
            useUnifiedTopology: true
 });

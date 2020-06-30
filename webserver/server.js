@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express=require('express');
 const {connectToDB,insertOrders,register,login,ordersList}=require('./Database.js')
 const cors=require('cors');
@@ -6,6 +7,8 @@ const app=express();
 
 
 app.use(cors());
+  
+
 
 
 app.use(express.urlencoded({extended:true}));
@@ -15,7 +18,7 @@ app.use(express.json());
 // app.use('/api',(req,res,next)=>router(req,res,next));
 
 (async function(){
-    await connectToDB(process.env.DB_URL2);
+    await connectToDB();
 })();
 app.get('/',(req,res)=>{
     console.log("home page");
