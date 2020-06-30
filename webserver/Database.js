@@ -78,12 +78,8 @@ async function login(account){
  catch(err){
      console.log("database error"+err)
  }}
-
- function getConnection(){
-    return mongoose;
-}
 async function ordersList(){
    const result=await Order.find({});
    return result;
 }
-module.exports={connectToDB,insertOrders,register,login,ordersList,getConnection,User,userSchema}
+module.exports={connectToDB,insertOrders,register,login,ordersList}
