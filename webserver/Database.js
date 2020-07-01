@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({path:'../ecom_config.env'});
 const mongoose=require('mongoose');
 // const {MongoClient}=require('mongodb')
 

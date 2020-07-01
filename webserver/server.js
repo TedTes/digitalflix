@@ -1,5 +1,6 @@
 const path =require('path');
 require('dotenv').config({path:'../ecom_config.env'});
+require('dotenv').config();
 const express=require('express');
 const {connectToDB,insertOrders,register,login,ordersList}=require('./Database.js')
 const cors=require('cors');
