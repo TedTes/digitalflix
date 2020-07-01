@@ -1,1 +1,1 @@
-web:node webserver/server.js
+web: cd webserver && npm install && node server.js,
