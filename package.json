@@ -31,7 +31,7 @@
     "serve": "^11.3.2"
   },
   "scripts": {
-     "start": "node webserver/server.js",
+     "start": "npm reactstart",
     "reactstart": "react-scripts start",
     "webservice": "node webserver/server.js",
     "build": "react-scripts build",
