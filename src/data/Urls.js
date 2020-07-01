@@ -9,14 +9,14 @@ export const RestUrls={
  
     // [DataTypes.ORDERS]: `${protocol}://${hostname}:${port2}/api/orders`,
     // [DataTypes.ORDERS_LIST]:`${protocol}://${hostname}:${port2}/api/orderslist`,
-    [DataTypes.ORDERS]: `https://digitalflix.herokuapp.com/api/orders`,
-    [DataTypes.ORDERS_LIST]:` https://digitalflix.herokuapp.com/api/orderslist`,
+    [DataTypes.ORDERS]: `https://digitalflixserver.herokuapp.com/api/orders`,
+    [DataTypes.ORDERS_LIST]:`https://digitalflixserver.herokuapp.com/api/orderslist`,
     // [DataTypes.PRODUCTS]:`${protocol}://${hostname}:${port}/products`,
     // [DataTypes.CATEGORIES]:`${protocol}://${hostname}:${port}/categories`,
     [DataTypes.PRODUCTS]:`https://apiecom.herokuapp.com/products`,
     [DataTypes.CATEGORIES]:`https://apiecom.herokuapp.com/categories`,
-    [ActionTypes.CREATE_ACCOUNT]:`https://digitalflix.herokuapp.com/api/register`,
-    [ActionTypes.LOGIN]:`https://digitalflix.herokuapp.com/api/login`,
+    [ActionTypes.CREATE_ACCOUNT]:`https://digitalflixserver.herokuapp.com/api/register`,
+    [ActionTypes.LOGIN]:`https://digitalflixserver.herokuapp.com/api/login`,
 
 
    
