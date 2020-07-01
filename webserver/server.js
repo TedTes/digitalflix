@@ -1,24 +1,21 @@
-require('dotenv').config();
+const path =require('path');
+require('dotenv').config({path:'../ecom_config.env'});
 const express=require('express');
 const {connectToDB,insertOrders,register,login,ordersList}=require('./Database.js')
 const cors=require('cors');
 const app=express();
 
 
-
 app.use(cors());
-  
-
-
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 
 // app.use('/api',(req,res,next)=>router(req,res,next));
 
-(async function(){
-    await connectToDB();
+( function(){
+ connectToDB();
 })();
 app.get('/',(req,res)=>{
     console.log("home page");
