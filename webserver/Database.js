@@ -27,7 +27,7 @@ const User= mongoose.model('user',userSchema)
 const Order=mongoose.model('order',orderSchema)
 async function connectToDB(){
     try{
-        mongoose.connection=await mongoose.connect(process.env.MONGO_URL, {
+        mongoose.connection=await mongoose.connect('mongodb+srv://Admin:admin&321@cluster0-9zj1s.mongodb.net/digitalflix?retryWrites=true&w=majority', {
            useNewUrlParser: true,
            useUnifiedTopology: true
 });
