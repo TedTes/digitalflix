@@ -27,10 +27,13 @@ const User= mongoose.model('user',userSchema)
 const Order=mongoose.model('order',orderSchema)
  function connectToDB(){
     try{
-        mongoose.connection=mongoose.connect(process.env.MONGO_URL, {
-           useNewUrlParser: true,
-           useUnifiedTopology: true
-});
+    mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true});
+
+       var db=mongoose.connection
+        db.on('error',console.error.bind(console,"connection error"))
+        db.once('open',function(){
+          console.log('we are connected');
+        })
     }
     catch(err){
         console.log("not connected")
